@@ -100,6 +100,7 @@
             
               nixpkgs.config.permittedInsecurePackages = [
                 "openssl-1.1.1u"
+                "electron-12.2.3"
               ];
             
 
@@ -110,6 +111,7 @@
     alacritty
     brave
     curl
+    etcher
     gimp
     git
     github-desktop
