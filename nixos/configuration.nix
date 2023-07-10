@@ -49,6 +49,15 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+  
+
+  # enable hyperland
+  programs.hyprland.enable = true;
+  programs.hyprland.xwayland = {
+     hidpi = true;
+     enable = true;
+  };
+
 
   # Configure keymap in X11
   services.xserver = {
@@ -104,20 +113,25 @@
               ];
             
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
     brave
+    cantarell-fonts
     curl
     etcher
     gimp
     git
     github-desktop
+    hyprland
+    kitty
     libreoffice
+    noto-fonts
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    waybar
     wget
+    wofi
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
