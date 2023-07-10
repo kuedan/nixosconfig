@@ -161,4 +161,17 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
+  # Automatic Garbage Collection
+  nix.gc = {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 7d";
+        };
+
+ # Auto system update
+ system.autoUpgrade = {
+      enable = true;
+};
+
+
 }
