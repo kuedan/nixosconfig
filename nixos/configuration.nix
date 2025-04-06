@@ -13,7 +13,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.plymouth.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -49,27 +48,17 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
-
-  # enable hyperland
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland = {
-     hidpi = true;
-     enable = true;
-  };
-
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -94,45 +83,44 @@
     description = "Daniel Kuecker";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox
     #  thunderbird
     ];
   };
 
+programs.virt-manager.enable = true;
+
+users.groups.libvirtd.members = ["your_username"];
+
+virtualisation.libvirtd.enable = true;
+
+virtualisation.spiceUSBRedirection.enable = true;
+
+  # Install firefox.
+  programs.firefox.enable = false;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
- 
-  # Alow Flatpak
-  services.flatpak.enable = true;
-
-
-            
-              nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1u"
-                "electron-12.2.3"
-              ];
-            
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alacritty
     brave
-    cantarell-fonts
-    curl
-    etcher
+    flatpak
+    geany
     gimp
     git
-    github-desktop
-    hyprland
-    kitty
+    gnome-disk-utility
+    gnome-software
     libreoffice
-    noto-fonts
+    usbimager
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    waybar
     wget
-    wofi
+    
+ 
   ];
+
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -159,19 +147,12 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
-  # Automatic Garbage Collection
-  nix.gc = {
-                automatic = true;
-                dates = "weekly";
-                options = "--delete-older-than 7d";
-        };
-
- # Auto system update
- system.autoUpgrade = {
+  system.stateVersion = "24.11"; # Did you read the comment?
+  
+  services.flatpak.enable = true;
+  
+  # Auto system update
+system.autoUpgrade = {
       enable = true;
 };
-
-
 }
