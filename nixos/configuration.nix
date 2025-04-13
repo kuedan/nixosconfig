@@ -112,9 +112,12 @@ virtualisation.spiceUSBRedirection.enable = true;
     git
     gnome-disk-utility
     gnome-software
+    keepassxc
     libreoffice
+    nextcloud-client
     usbimager
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    warp-terminal
     wget
     
  
