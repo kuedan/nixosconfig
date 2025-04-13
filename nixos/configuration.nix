@@ -49,6 +49,7 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -86,10 +87,27 @@
     #  thunderbird
     ];
   };
+  
+  services.ollama = {
+  enable = true;
+  # Optional: preload models, see https://ollama.com/library
+  loadModels = [ "dolphin3"];
+};
+
+services.open-webui = {
+  enable = true;
+  environment = {
+    ANONYMIZED_TELEMETRY = "False";
+    DO_NOT_TRACK = "True";
+    SCARF_NO_ANALYTICS = "True";
+    OLLAMA_API_BASE_URL = "http://127.0.0.1:11434/api";
+    OLLAMA_BASE_URL = "http://127.0.0.1:11434";
+  };
+};
 
 programs.virt-manager.enable = true;
 
-users.groups.libvirtd.members = ["your_username"];
+users.groups.libvirtd.members = ["kuedan"];
 
 virtualisation.libvirtd.enable = true;
 
@@ -115,6 +133,7 @@ virtualisation.spiceUSBRedirection.enable = true;
     keepassxc
     libreoffice
     nextcloud-client
+    oterm
     usbimager
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     warp-terminal
