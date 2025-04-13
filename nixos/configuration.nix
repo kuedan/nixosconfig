@@ -126,6 +126,7 @@ virtualisation.spiceUSBRedirection.enable = true;
     brave
     flatpak
     geany
+    ghostty
     gimp
     git
     gnome-disk-utility
