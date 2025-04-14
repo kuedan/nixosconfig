@@ -91,7 +91,7 @@
   services.ollama = {
   enable = true;
   # Optional: preload models, see https://ollama.com/library
-  loadModels = [ "dolphin3"];
+  loadModels = [ "codellama"];
 };
 
 services.open-webui = {
@@ -122,6 +122,7 @@ virtualisation.spiceUSBRedirection.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    aider-chat
     alacritty
     brave
     flatpak
@@ -134,8 +135,9 @@ virtualisation.spiceUSBRedirection.enable = true;
     keepassxc
     libreoffice
     nextcloud-client
-    nvim
     oterm
+    python311Packages.pip
+    starship
     usbimager
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     warp-terminal
