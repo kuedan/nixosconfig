@@ -105,6 +105,18 @@ services.open-webui = {
   };
 };
 
+
+
+  services.accounts-daemon.enable = true;
+  services.gnome.gnome-online-accounts.enable = true;
+
+  # Env vars
+  environment.variables = {
+    # Set sandbox variable for gnome accounts to work
+    WEBKIT_FORCE_SANDBOX = "0";
+  };
+
+
 programs.virt-manager.enable = true;
 
 users.groups.libvirtd.members = ["kuedan"];
@@ -122,8 +134,6 @@ virtualisation.spiceUSBRedirection.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    aider-chat
-    alacritty
     brave
     flatpak
     geany
@@ -134,13 +144,14 @@ virtualisation.spiceUSBRedirection.enable = true;
     gnome-software
     keepassxc
     libreoffice
+    localsend
     nextcloud-client
     oterm
     python311Packages.pip
     starship
     usbimager
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    warp-terminal
+    vscodium
     wget
     
  
